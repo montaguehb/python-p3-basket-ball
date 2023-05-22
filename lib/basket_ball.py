@@ -182,3 +182,57 @@ def game_dict():
             ]
         }
     }
+
+def num_points_per_game(name):
+    new_dict = game_dict()
+    for n in new_dict.items():
+        for x in new_dict[n[0]]["players"]:
+            if x["name"] == name:
+                return x["points_per_game"]
+
+def player_age(name):
+    new_dict = game_dict()
+    for n in new_dict.items():
+        for x in new_dict[n[0]]["players"]:
+            if x["name"] == name:
+                return x["age"]
+
+def team_colors(team):
+    new_dict = game_dict()
+    for n in new_dict.items():
+            if new_dict[n[0]]["team_name"] == team:
+                return new_dict[n[0]]["colors"]
+
+def team_names():
+    new_dict = game_dict()
+    return [new_dict[n[0]]["team_name"] for n in new_dict.items()]
+        
+
+def player_numbers(team):
+    new_dict = game_dict()
+    for n in new_dict.items():
+        if new_dict[n[0]]["team_name"] == team:
+                return [x["number"] for x in new_dict[n[0]]["players"]]
+
+def player_stats(name):
+    new_dict = game_dict()
+    for n in new_dict.items():
+        for x in new_dict[n[0]]["players"]:
+            if x["name"] == name:
+                return x
+
+def average_rebounds_by_shoe_brand():
+    new_dict = game_dict()
+    shoe_dict = {}
+    for n in new_dict.items():
+        for x in new_dict[n[0]]["players"]:
+            if not shoe_dict.get(x["shoe_brand"]):
+                shoe_dict[x["shoe_brand"]] = {"rebounds_per_game": x["rebounds_per_game"], "num_players": 1}
+            else:
+                shoe_dict[x["shoe_brand"]]["rebounds_per_game"] += x["rebounds_per_game"]
+                shoe_dict[x["shoe_brand"]]["num_players"] += 1 
+    for n in shoe_dict.items():
+        avg = n[1]['rebounds_per_game']/n[1]['num_players']
+        print(f"{n[0]}:  {avg:.2f}")
+
+average_rebounds_by_shoe_brand()
