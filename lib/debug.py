@@ -8,4 +8,4 @@ from basket_ball import (
 )
 
 if __name__ == '__main__':
-    import ipdb; ipdb.set_trace()
+    num_points_per_game("Evan Mobley")
