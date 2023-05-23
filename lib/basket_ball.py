@@ -185,28 +185,28 @@ def game_dict():
 
 def num_points_per_game(name):
     new_dict = game_dict()
-    return next(x.get("points_per_game") for n in new_dict.keys() for x in new_dict.get(n).get("players") if x.get("name") == name)
+    return next(x.get("points_per_game") for n in new_dict for x in new_dict.get(n).get("players") if x.get("name") == name)
 
 def player_age(name):
     new_dict = game_dict()
-    return next(x.get("age") for n in new_dict.keys() for x in new_dict.get(n).get("players") if x.get("name") == name)
+    return next(x.get("age") for n in new_dict for x in new_dict.get(n).get("players") if x.get("name") == name)
 
 def team_colors(team):
     new_dict = game_dict()
-    return next(new_dict.get(n).get("colors") for n in new_dict.keys() if new_dict.get(n).get("team_name") == team)
+    return next(new_dict.get(n).get("colors") for n in new_dict if new_dict.get(n).get("team_name") == team)
 
 def team_names():
     new_dict = game_dict()
-    return [new_dict.get(n).get("team_name") for n in new_dict.keys()]
+    return [new_dict.get(n).get("team_name") for n in new_dict]
         
 
 def player_numbers(team):
     new_dict = game_dict()
-    return [x.get("number") for n in new_dict.keys() for x in new_dict.get(n).get("players") if new_dict.get(n)["team_name"] == team] 
+    return [x.get("number") for n in new_dict for x in new_dict.get(n).get("players") if new_dict.get(n)["team_name"] == team] 
 
 def player_stats(name):
     new_dict = game_dict()
-    return next(x for n in new_dict.keys() for x in new_dict.get(n).get("players") if x.get("name") == name)
+    return next(x for n in new_dict for x in new_dict.get(n).get("players") if x.get("name") == name)
 
 def average_rebounds_by_shoe_brand():
     new_dict = game_dict()
